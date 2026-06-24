@@ -1,0 +1,32 @@
+{
+    "description": "Encrypt and decrypt with a KMS key, including data key generation and key metadata.",
+    "policies": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "AllowCryptographicOperations",
+                "Effect": "Allow",
+                "Action": [
+                    "kms:Decrypt",
+                    "kms:Encrypt",
+                    "kms:ReEncryptFrom",
+                    "kms:ReEncryptTo",
+                    "kms:GenerateDataKey",
+                    "kms:GenerateDataKeyWithoutPlaintext",
+                    "kms:DescribeKey"
+                ],
+                "Resource": "{{RESOURCE_ARN}}"
+            },
+            {
+                "Sid": "AllowKeyMetadataAccess",
+                "Effect": "Allow",
+                "Action": [
+                    "kms:GetPublicKey",
+                    "kms:GetKeyRotationStatus"
+                ],
+                "Resource": "{{RESOURCE_ARN}}"
+            }
+        ]
+    },
+    "managed_policies": []
+}

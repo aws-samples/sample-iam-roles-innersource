@@ -1,0 +1,22 @@
+{
+    "description": "Send, receive, and delete messages on an SQS queue plus read queue metadata.",
+    "policies": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "sqs:SendMessage",
+                    "sqs:ReceiveMessage",
+                    "sqs:DeleteMessage",
+                    "sqs:GetQueueAttributes",
+                    "sqs:GetQueueUrl"
+                ],
+                "Resource": [
+                    "{{RESOURCE_ARN}}"
+                ]
+            }
+        ]
+    },
+    "managed_policies": []
+}

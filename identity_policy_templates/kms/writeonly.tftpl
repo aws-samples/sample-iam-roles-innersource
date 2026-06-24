@@ -1,0 +1,29 @@
+{
+    "description": "Encrypt and generate data keys with a KMS key, plus read key metadata.",
+    "policies": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "AllowEncryptOnly",
+                "Effect": "Allow",
+                "Action": [
+                    "kms:Encrypt",
+                    "kms:GenerateDataKey",
+                    "kms:GenerateDataKeyWithoutPlaintext",
+                    "kms:DescribeKey"
+                ],
+                "Resource": "{{RESOURCE_ARN}}"
+            },
+            {
+                "Sid": "AllowKeyMetadataAccess",
+                "Effect": "Allow",
+                "Action": [
+                    "kms:GetPublicKey",
+                    "kms:GetKeyRotationStatus"
+                ],
+                "Resource": "{{RESOURCE_ARN}}"
+            }
+        ]
+    },
+    "managed_policies": []
+}

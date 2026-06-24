@@ -1,0 +1,31 @@
+{
+    "description": "Read and write SSM Parameter Store parameters (get, put, delete) plus describe.",
+    "policies": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "ssm:DescribeParameters"
+                ],
+                "Resource": "*"
+            },
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "ssm:GetParameter",
+                    "ssm:GetParameters",
+                    "ssm:GetParameterHistory",
+                    "ssm:GetParametersByPath",
+                    "ssm:PutParameter",
+                    "ssm:DeleteParameter",
+                    "ssm:DeleteParameters"
+                ],
+                "Resource": [
+                    "{{RESOURCE_ARN}}"
+                ]
+            }
+        ]
+    },
+    "managed_policies": []
+}

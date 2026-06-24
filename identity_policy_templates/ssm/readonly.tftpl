@@ -1,0 +1,28 @@
+{
+    "description": "Read SSM Parameter Store parameters (get, get by path, history) plus describe.",
+    "policies": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "ssm:DescribeParameters"
+                ],
+                "Resource": "*"
+            },
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "ssm:GetParameter",
+                    "ssm:GetParameters",
+                    "ssm:GetParameterHistory",
+                    "ssm:GetParametersByPath"
+                ],
+                "Resource": [
+                    "{{RESOURCE_ARN}}"
+                ]
+            }
+        ]
+    },
+    "managed_policies": []
+}

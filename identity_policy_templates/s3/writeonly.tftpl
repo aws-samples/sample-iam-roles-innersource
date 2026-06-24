@@ -1,0 +1,35 @@
+{
+    "description": "Write objects to an S3 bucket (put, delete) plus list and locate the bucket.",
+    "policies": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": "s3:ListAllMyBuckets",
+                "Resource": "*"
+            },
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "s3:ListBucket",
+                    "s3:GetBucketLocation"
+                ],
+                "Resource": [
+                    "{{RESOURCE_ARN}}"
+                ]
+            },
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "s3:PutObject",
+                    "s3:PutObjectAcl",
+                    "s3:DeleteObject"
+                ],
+                "Resource": [
+                    "{{RESOURCE_ARN}}/*"
+                ]
+            }
+        ]
+    },
+    "managed_policies": []
+}

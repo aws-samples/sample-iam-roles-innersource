@@ -1,0 +1,34 @@
+{
+  "ec2": {
+    "description": "Allows EC2 instances to assume the role.",
+    "parameters": []
+  },
+  "event": {
+    "description": "Allows EventBridge to assume the role.",
+    "parameters": []
+  },
+  "lambda": {
+    "description": "Allows Lambda functions to assume the role.",
+    "parameters": []
+  },
+  "pod": {
+    "description": "Allows Kubernetes/OpenShift pods to assume the role via IRSA (OIDC). Renders one statement per parameter entry.",
+    "parameters": ["cluster_oidc_provider_arn", "cluster_oidc_provider_url", "pod_namespace", "app"]
+  },
+  "s3": {
+    "description": "Allows the S3 service to assume the role (e.g. for cross-region replication).",
+    "parameters": []
+  },
+  "step-function": {
+    "description": "Allows Step Functions to assume the role.",
+    "parameters": []
+  },
+  "custom/ec2-lambda": {
+    "description": "Custom trust policy allowing EC2 and Lambda to assume the role.",
+    "parameters": []
+  },
+  "custom/eventbridge-lambda": {
+    "description": "Custom trust policy allowing EventBridge and Lambda to assume the role.",
+    "parameters": []
+  }
+}

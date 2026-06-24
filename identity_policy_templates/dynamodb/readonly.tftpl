@@ -1,0 +1,24 @@
+{
+    "description": "Read items from a DynamoDB table and its indexes (get, query, scan, batch get).",
+    "policies": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "TableItemReadOnly",
+                "Effect": "Allow",
+                "Action": [
+                    "dynamodb:GetItem",
+                    "dynamodb:BatchGetItem",
+                    "dynamodb:Query",
+                    "dynamodb:Scan",
+                    "dynamodb:DescribeTable"
+                ],
+                "Resource": [
+                    "{{RESOURCE_ARN}}",
+                    "{{RESOURCE_ARN}}/index/*"
+                ]
+            }
+        ]
+    },
+    "managed_policies": []
+}

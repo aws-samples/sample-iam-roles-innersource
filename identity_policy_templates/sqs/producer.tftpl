@@ -1,0 +1,20 @@
+{
+    "description": "Produce messages to an SQS queue (send) plus read queue metadata.",
+    "policies": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "sqs:SendMessage",
+                    "sqs:GetQueueAttributes",
+                    "sqs:GetQueueUrl"
+                ],
+                "Resource": [
+                    "{{RESOURCE_ARN}}"
+                ]
+            }
+        ]
+    },
+    "managed_policies": []
+}

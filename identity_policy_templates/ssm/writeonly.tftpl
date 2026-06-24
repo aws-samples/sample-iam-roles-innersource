@@ -1,0 +1,27 @@
+{
+    "description": "Write SSM Parameter Store parameters (put, delete) plus describe.",
+    "policies": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "ssm:DescribeParameters"
+                ],
+                "Resource": "*"
+            },
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "ssm:PutParameter",
+                    "ssm:DeleteParameter",
+                    "ssm:DeleteParameters"
+                ],
+                "Resource": [
+                    "{{RESOURCE_ARN}}"
+                ]
+            }
+        ]
+    },
+    "managed_policies": []
+}

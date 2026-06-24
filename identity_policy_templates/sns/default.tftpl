@@ -1,0 +1,20 @@
+{
+    "description": "Publish messages to an SNS topic and read topic attributes.",
+    "policies": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "sns:Publish",
+                    "sns:PublishBatch",
+                    "sns:GetTopicAttributes"
+                ],
+                "Resource": [
+                    "{{RESOURCE_ARN}}"
+                ]
+            }
+        ]
+    },
+    "managed_policies": []
+}

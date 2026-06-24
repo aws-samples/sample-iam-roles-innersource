@@ -1,0 +1,8 @@
+{
+    "ec2": [
+        "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+    ],
+    "lambda": [
+        "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+    ] 
+}

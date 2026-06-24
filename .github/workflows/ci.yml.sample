@@ -1,0 +1,94 @@
+# ---------------------------------------------------------------------------
+# SAMPLE / DISABLED WORKFLOW — for illustration only.
+#
+# This repository is an illustrative sample, so this workflow is intentionally
+# disabled: the file is named "ci.yml.sample" (not ".yml"), which means GitHub
+# Actions does not run it. It shows the continuous integration you would use to
+# gate contributions to the module.
+#
+# To enable it in your own fork, copy it to .github/workflows/ci.yml:
+#   cp .github/workflows/ci.yml.sample .github/workflows/ci.yml
+# ---------------------------------------------------------------------------
+name: CI
+
+on:
+  push:
+    branches: [main, mainline]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    name: fmt / validate / test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.8"
+          terraform_wrapper: false
+
+      - name: Format
+        run: terraform fmt -check -recursive
+
+      - name: Init
+        run: terraform init -backend=false -input=false
+
+      - name: Validate
+        run: terraform validate
+
+      - name: Validate examples
+        run: |
+          for d in examples/ec2 examples/pod; do
+            echo "== validating $d =="
+            terraform -chdir="$d" init -backend=false -input=false
+            terraform -chdir="$d" validate
+          done
+
+      - name: Test
+        run: terraform test
+
+  lint:
+    name: tflint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: terraform-linters/setup-tflint@v4
+        with:
+          tflint_version: latest
+
+      - name: Init tflint
+        run: tflint --init
+
+      - name: Run tflint
+        run: tflint --recursive
+
+  security:
+    name: checkov
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: bridgecrewio/checkov-action@v12
+        with:
+          directory: .
+          framework: terraform
+          config_file: .checkov.yaml
+          quiet: true
+
+  docs:
+    name: docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Check generated docs
+        run: python3 scripts/generate_template_docs.py --check

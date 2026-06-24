@@ -1,0 +1,19 @@
+{
+    "description": "Publish events to Amazon EventBridge and describe rules.",
+    "policies": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "events:PutEvents",
+                    "events:DescribeRule"
+                ],
+                "Resource": [
+                    "{{RESOURCE_ARN}}"
+                ]
+            }
+        ]
+    },
+    "managed_policies": []
+}

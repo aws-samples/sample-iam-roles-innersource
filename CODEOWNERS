@@ -1,0 +1,18 @@
+# Code owners for this module.
+#
+# The maintainers (a central platform or cloud security team) own and must review
+# every change. This enforces the "centralized governance" model described in
+# CONTRIBUTING.md.
+#
+# Replace @example-corp/platform-team below with your organization's actual team
+# handle. This file works on GitHub and GitLab when placed at the repository root.
+
+# Default owner for everything in the repository.
+*                               @example-corp/platform-team
+
+# Security-sensitive areas (explicit ownership for clarity).
+/identity_policy_templates/     @example-corp/platform-team
+/trust_policy_templates/        @example-corp/platform-team
+/main.tf                        @example-corp/platform-team
+/variables.tf                   @example-corp/platform-team
+/versions.tf                    @example-corp/platform-team

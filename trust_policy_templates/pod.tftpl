@@ -1,0 +1,20 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+%{ for idx, param in parameters ~}
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": "${param.cluster_oidc_provider_arn}"
+      },
+      "Action": "sts:AssumeRoleWithWebIdentity",
+      "Condition": {
+        "StringEquals": {
+          "${param.cluster_oidc_provider_url}:aud": "sts.amazonaws.com",
+          "${param.cluster_oidc_provider_url}:sub": "system:serviceaccount:${param.pod_namespace}:${param.pod_namespace}-${param.app}-sa"
+        }
+      }
+    }${idx < length(parameters) - 1 ? "," : ""}
+%{ endfor ~}
+  ]
+}

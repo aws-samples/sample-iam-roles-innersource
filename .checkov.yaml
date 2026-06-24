@@ -1,0 +1,7 @@
+framework:
+  - terraform
+quiet: true
+compact: true
+# No checks are currently skipped. If a finding is a documented false positive
+# or an accepted risk, add its check ID here with a justification comment.
+skip-check: []

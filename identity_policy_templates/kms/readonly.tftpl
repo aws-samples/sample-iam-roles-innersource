@@ -1,0 +1,27 @@
+{
+    "description": "Decrypt with a KMS key and read key metadata.",
+    "policies": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "AllowDecryptOnly",
+                "Effect": "Allow",
+                "Action": [
+                    "kms:Decrypt",
+                    "kms:DescribeKey"
+                ],
+                "Resource": "{{RESOURCE_ARN}}"
+            },
+            {
+                "Sid": "AllowKeyMetadataAccess",
+                "Effect": "Allow",
+                "Action": [
+                    "kms:GetPublicKey",
+                    "kms:GetKeyRotationStatus"
+                ],
+                "Resource": "{{RESOURCE_ARN}}"
+            }
+        ]
+    },
+    "managed_policies": []
+}

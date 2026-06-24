@@ -1,0 +1,29 @@
+{
+    "description": "Read and write items in a DynamoDB table and its indexes (get, query, scan, put, update, delete, batch).",
+    "policies": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "TableItemReadWrite",
+                "Effect": "Allow",
+                "Action": [
+                    "dynamodb:GetItem",
+                    "dynamodb:BatchGetItem",
+                    "dynamodb:Query",
+                    "dynamodb:Scan",
+                    "dynamodb:ConditionCheckItem",
+                    "dynamodb:PutItem",
+                    "dynamodb:UpdateItem",
+                    "dynamodb:DeleteItem",
+                    "dynamodb:BatchWriteItem",
+                    "dynamodb:DescribeTable"
+                ],
+                "Resource": [
+                    "{{RESOURCE_ARN}}",
+                    "{{RESOURCE_ARN}}/index/*"
+                ]
+            }
+        ]
+    },
+    "managed_policies": []
+}
