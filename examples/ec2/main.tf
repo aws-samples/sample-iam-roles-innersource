@@ -31,7 +31,7 @@ module "iam_role" {
   identity_policy = [
     {
       policy    = "s3/readonly"
-      resources = ["arn:aws:s3:::example-bucket"]
+      resources = ["arn:aws:s3:::amzn-s3-demo"]
     },
     {
       policy    = "dynamodb/readonly"

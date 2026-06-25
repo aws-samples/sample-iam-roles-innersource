@@ -5,18 +5,6 @@ All notable changes to this module are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
-
-### Added
-
-- Module support for the `{{RESOURCE_ARN}}/index/*` placeholder so DynamoDB templates can scope to a table's secondary indexes.
-
-### Changed
-
-- Tightened the DynamoDB templates to explicit item-level actions and scoped them to the table and its indexes. Removed table-management actions (`CreateTable`, and the `Delete*`/`Update*` wildcards that allowed `DeleteTable`/`UpdateContinuousBackups`) and the broad `*` list/describe statement, aligning with AWS least-privilege guidance.
-- Renamed the SQS templates `readonly` -> `consumer` and `writeonly` -> `producer` to reflect messaging roles accurately (the old `readonly` mislabeled a message-deleting consumer). **Breaking:** update any `policy = "sqs/readonly"` or `"sqs/writeonly"` references to `sqs/consumer` / `sqs/producer`.
-- KMS `default` now lists `kms:ReEncryptFrom` and `kms:ReEncryptTo` explicitly instead of the `kms:ReEncrypt*` wildcard, so no template uses action wildcards.
-
 ## [1.0.0] - 2026-06-23
 
 Initial public release.
